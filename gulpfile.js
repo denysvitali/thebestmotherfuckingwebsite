@@ -29,6 +29,11 @@ gulp.task('less', () => {
         .pipe(gulp.dest('dist/css/'));
 });
 
+gulp.task('copy', () => {
+    gulp.src('src/dist/**/*')
+        .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('css', () => {
     return gulp.src('src/less/*.less')
         .pipe(less())
@@ -41,7 +46,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('watch', () => {
-    return gulp.watch('src/**/*', ['views', 'less']);
+    return gulp.watch('src/**/*', ['views', 'less', 'copy']);
 });
 
-gulp.task('default', ['clean', 'views', 'css']);
+gulp.task('default', ['clean', 'views', 'css', 'copy']);
