@@ -16,14 +16,19 @@ html
   h2 The best kick-ass website
   p Let me describe the #[i real] perfect-ass website which still has the glory of the past #[span.mfw motherfuckingwebsite]s:
   ul
-    li Shit doesn't weigh a ton (in fact it's just 16.86 KB when the 73KB cat picture below is removed)
-    li The page weighs 90.36KB, 87.47% less than the #[a(href="https://google.com/") Google home page]
+    li Shit doesn't weigh a ton (in fact it's just 34.97 KB when the 27.83KB cat picture below is removed)
+    -let googleWeight = 1006.82;
+    -let ourWeight = 63.02;
+    -let perc = 100 - ourWeight*100/googleWeight;
+    -perc = Math.round(perc*10)/10;
+    li The page weighs exactly #{ourWeight}kB, #{perc}% less than the #[a(href="https://google.com/") Google home page]
     li Fits on your iPhone 1st gen (altough it doesn't work on your damn 16x32 Tamagotchi)
     li Looks #[i almost] the same on every screen
     li Every asshole that visits this website can use it without any problem #[small well, kind of]
+    li It's #[a(href="https://www.w3.org/TR/WCAG20/") accessible], so everyone can enjoy it #[small but not everyone can read this - this text is Ant-Accessible]
     li Shit is #[i even more] legible than the fucking two previous versions - and it also has a cleanish style without looking like an #[a(href="https://en.wikipedia.org/wiki/ARPANET") ARPANET] website
     li Doesn't load massive images or scripts. We should all care about people who still use #[a(href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers") IPoAC]
-    li Uses only free and open resources. Like this ass-breaking font called "Open Sans"
+    li Uses only free and open resources. Like this ass-breaking font called "Open Sans" #[small which btw weighs 15.21kB, wtf]
     li It doesn't load your glorious jQuery or jQueryUI with all their fucking styles and shits. Nor Angular or any other framework. This website is made with plain HTML, CSS3 and JS. Keep it Vanilla!
     li Doesn't include any tracking service #[small this website does, but hey, who cares]
     li Images aren't forbidden, but when SVG is available #[i JUST USE IT].
@@ -36,13 +41,17 @@ html
     li It's over a #[a(href="https://en.wikipedia.org/wiki/HTTPS") secure connection] - so nobody can spy what we're serving to you (the page might be different for everyone, pshht!).
     li It uses one of the most general #[a(href="https://en.wikipedia.org/wiki/gTLD") gTLDs] available out there: .website
     li It uses the TLD, too: bestmotherfucking.website, check out #[a(href="http://domainr.com/") domainr] to do something cool too.
-    li It uses the kickassing #[a(href="https://letsencrypt.org/") Let's Encrypt] CA (don't you see the green lock?)
+    li It uses the kickassing #[a(href="https://letsencrypt.org/") Let's Encrypt] CA (don't you see the gorgeus green lock?)
     li It runs on #[a(href="https://nginx.com/") nginx]: the best fucking web server instead of Apache Server
     li It uses #[a(href="js/jquery-2.2.4.min.js") a custom version] of the awesome #[a(href="http://jquery.com/") ultra-lightweight jQuery] #[b /s]
     li It doesn't use a single media query #[small well, not really]
     li It probably doesn't support all the web browsers, but that's the best thing - if the user's browser is outdated he will notice and maybe he will switch from #[a(href="https://microsoft.com/ie") the crap he uses] to #[a(href="https://mozilla.com/firefox") a much cooler browser]
     li It uses some cool technologies like JavaScript #[img(src="img/js.svg")], CSS3 #[img(src="img/css3.svg")] and HTML5 #[img(src="img/html5.svg")]
-    li It's Open Source and on #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/") Github].
+    li It supports #[a(href="https://en.wikipedia.org/wiki/HTTP/2") HTTP/2]
+    li It includes a Cache-Control header, so you don't waste your precious bandwidth if you visit the website more than once
+    li It uses #[a(href="https://piwik.org/") Piwik], a free and Open Source analytics platform (we still love you Google, don't be mad at us)
+    li It allows universal access from every website via #[a(href="https://enable-cors.org/") CORS]
+    li It's Open Source, freely available on #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/") Github], and everybody can contribute to it.
   h2 Put even less contrast
   p Yeah, a #[span.foufoufou #444 is cool] but a #[span.fivfivfiv #555 is better].
   p We don't need to break our eyes while looking at a #[span.mfw motherfuckingwebsite].
@@ -70,8 +79,26 @@ html
   p Despite what was said here they're beautiful and truly among the best websites on the internet (even though this is still #[span.mfw thebestmotherfuckingwebsite]), so go check 'em out.
   p Seriously, follow some of the advice we gave you, they'll "make the web great again" #[span.citneed Cit. needed]
   h2 Author
-  p This website was created by an annoyed developer that can #[a(href="https://twitter.com/DenysVitali") be followed on Twitter], #[a(href="https://github.com/denysvitali/") followed on GitHub] or contacted #[a(href="https://denv.it/") here, on his ultra-minimalist website]
+  p.
+    This website was created by an annoyed developer that can #[a(href="https://twitter.com/DenysVitali") be followed on Twitter],
+    #[a(href="https://github.com/denysvitali/") followed on GitHub] or contacted #[a(href="https://denv.it/") here, on his ultra-minimalist website]
   h2 Resources
-  p The cat picture was taken from the cool #[a(href="https://pixabay.com/") Pixabay] website (check it out, it's really cool and full of CC0 content). The author is #[a(href="https://pixabay.com/en/users/aloiswohlfahrt-123449/") aloiswohlfahrt]
+  p.
+    The cat picture was taken from the cool #[a(href="https://pixabay.com/") Pixabay] website: check it out, it's really cool and full of CC0 (aka Public Domain) content.
+    The author is #[a(href="https://pixabay.com/en/users/1899441-1899441/") 1899441] (seriously? His username looks like my PIN number!), the #[a(href="https://pixabay.com/en/cat-pets-cat-s-eyes-mieze-dear-451377/") old picture] was
+    by #[a(href="https://pixabay.com/en/users/aloiswohlfahrt-123449/") aloiswohlfahrt],
+    but I had to change it, cause it was too heavy and too cute.
+    You can #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/issues/new") open an issue on GitHub] if you think that this decision goes against the rules
+    of a good looking #[span.mfw motherfuckingwebsite].
+  h2 Contributions
+  p.
+    Since this website includes some contributions, and I'm not an asshole, I'll publically thank the following users for their help:
+  ul
+      li.
+        #[a(href="https://github.com/beardog108") @beardog108] for his #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/issues/5") precious suggestions] for
+        the server side part (Cache-Control, HTTP/2, CORS and Piwik)
+      li.
+        #[a(href="https://github.com/5ilver") @5ilver] and #[a(href="https://github.com/abluejelly") @abluejelly] for giving tips about #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/issues/6") contrast]
+
   script(src="js/main.fucking.js")
   include tracking.html
