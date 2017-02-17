@@ -1,10 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+@bodybgColor: #fafafa;
+@bodyTextColor: #555;
+@linkColor: #07A;
+@wrongColor: #c0392b;
+@shittyBlue: #0000EE;
+@shittyViolet: #551A8B;
+@motherfuckingColor: #16a085;
+@blockQuoteColor: #456;
+@openQuoteColor: #666;
+
 html{
-  background-color: #fafafa;
+  background-color: @bodybgColor;
 }
 body{
   font-family: "Open Sans", Arial;
-  color: #555;
+  color: @bodyTextColor;
   font-size: 16px;
   margin: 2em auto;
   max-width: 800px;
@@ -13,28 +24,108 @@ body{
   text-align: justify;
 }
 
+html.contrast{
+  /* Accessibility first */
+  @darkenBy: 25%;
+  body{
+    color: darken(@bodyTextColor, @darkenBy);
+  }
+
+  blockquote{
+    color: darken(@blockQuoteColor, @darkenBy);
+    &::before{
+      color: darken(@openQuoteColor, @darkenBy);
+    }
+  }
+
+  a,a:visited{
+    color: #0051c9;
+  }
+
+  span.wr{
+    color: #800;
+  }
+
+  span.mfw{
+    color: darken(@motherfuckingColor, @darkenBy*.3);
+  }
+}
+
+html.inverted{
+  /* Don't let the motherfucking sun disturb you */
+  background-color: #fff - @bodybgColor;
+
+  @lightenBy: 15%;
+  body{
+    color: #FFF - @bodyTextColor;
+  }
+
+  div#invmode{
+    color: #FFF;
+    background-color: #000;
+  }
+
+  blockquote{
+    color: lighten(#FFF - @blockQuoteColor, @lightenBy);
+    &::before{
+      color: lighten(#FFF - @openQuoteColor, @lightenBy);
+    }
+  }
+
+  a,a:visited{
+    color: @linkColor;
+  }
+
+  span.wr{
+    color: @wrongColor;
+  }
+
+  span.mfw{
+    color: lighten(@motherfuckingColor, @lightenBy*.3);
+  }
+}
+
 a,a:visited{
-  color: #07A;
+  color: @linkColor;
 }
 
 span.wr{
-  color: #c0392b;
+  color: @wrongColor;
   font-weight: 600;
   text-decoration: underline;
 }
 
-span.colored{
+div#contrast{
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 0.8em;
+  text-decoration: underline;
+}
 
+
+div#invmode{
+  color: #FFF;
+  background-color: #000;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 34px;
+  padding: 2px 5px 2px 5px;
+  font-size: 0.8em;
+  text-decoration: underline;
 }
 
 span.sb{
   cursor: not-allowed;
-  color: #0000EE;
+  color: @shittyBlue;
 }
 
 span.sv{
   cursor: not-allowed;
-  color: #551A8B;
+  color: @shittyViolet;
 }
 
 span.foufoufou{
@@ -66,7 +157,7 @@ span.fivfivfiv{
 }
 
 span.mfw{
-  color: #16a085;
+  color: @motherfuckingColor;
 }
 
 span.citneed{
@@ -123,7 +214,7 @@ ul{
 }
 
 blockquote{
-  color: #456;
+  color: @blockQuoteColor;
   margin-left: 0;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -149,7 +240,7 @@ blockquote{
 
   &::before{
     font-family: "Times New Roman", Times, Arial;
-    color: #666;
+    color: @openQuoteColor;
     content: open-quote;
     font-size: 2.2em;
     font-weight: 600;
