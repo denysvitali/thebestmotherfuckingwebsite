@@ -2,7 +2,13 @@
 
 @bodybgColor: #fafafa;
 @bodyTextColor: #555;
+
+// Link Colors
 @linkColor: #07A;
+@linkVisitedColor: #941352;
+@linkVisitedInvertedColor: #ac5a82;
+// ===============
+
 @wrongColor: #c0392b;
 @shittyBlue: #0000EE;
 @shittyViolet: #551A8B;
@@ -38,8 +44,11 @@ html.contrast{
     }
   }
 
-  a,a:visited{
+  a{
     color: #0051c9;
+    &:visited{
+        color: #7d013e;
+    }
   }
 
   span.wr{
@@ -72,8 +81,11 @@ html.inverted{
     }
   }
 
-  a,a:visited{
+  a{
     color: @linkColor;
+    &:visited{
+      color: @linkVisitedInvertedColor;
+    }
   }
 
   span.wr{
@@ -85,14 +97,12 @@ html.inverted{
   }
 }
 
-a,a:visited{
+a{
   color: @linkColor;
-}
 
-span.wr{
-  color: @wrongColor;
-  font-weight: 600;
-  text-decoration: underline;
+  &:visited{
+    color: @linkVisitedColor;
+  }
 }
 
 .noselect{
@@ -104,72 +114,6 @@ span.wr{
   user-select: none;
 }
 
-div#contrast{
-  color: #000;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 0.8em;
-  text-decoration: underline;
-  .noselect
-}
-
-
-div#invmode{
-  color: #FFF;
-  background-color: #000;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 34px;
-  padding: 2px 5px 2px 5px;
-  font-size: 0.8em;
-  text-decoration: underline;
-  .noselect
-}
-
-span.sb{
-  cursor: not-allowed;
-  color: @shittyBlue;
-}
-
-span.sv{
-  cursor: not-allowed;
-  color: @shittyViolet;
-}
-
-span.foufoufou{
-  &::before{
-    content: "";
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
-    background-color: #444;
-  }
-  color: #444;
-  font-weight: bold;
-}
-
-span.fivfivfiv{
-  &::before{
-    content: "";
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
-    background-color: #555;
-  }
-  color: #555;
-  font-weight: bold;
-}
-
-span.mfw{
-  color: @motherfuckingColor;
-}
 
 span.citneed{
   vertical-align: top;
@@ -295,4 +239,88 @@ blockquote{
       }
     }
   }
+}
+
+
+// ===== TBMFW specific styles ======
+
+span.visited{
+  color: @linkVisitedColor;
+}
+
+span.visited-maroon{
+  color:  #85144b;
+}
+
+span.wr{
+  color: @wrongColor;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+div#contrast{
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 0.8em;
+  text-decoration: underline;
+  .noselect
+}
+
+
+div#invmode{
+  color: #FFF;
+  background-color: #000;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 34px;
+  padding: 2px 5px 2px 5px;
+  font-size: 0.8em;
+  text-decoration: underline;
+  .noselect
+}
+
+span.sb{
+  cursor: not-allowed;
+  color: @shittyBlue;
+}
+
+span.sv{
+  cursor: not-allowed;
+  color: @shittyViolet;
+}
+
+span.foufoufou{
+  &::before{
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    background-color: #444;
+  }
+  color: #444;
+  font-weight: bold;
+}
+
+span.fivfivfiv{
+  &::before{
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    background-color: #555;
+  }
+  color: #555;
+  font-weight: bold;
+}
+
+span.mfw{
+  color: @motherfuckingColor;
 }
