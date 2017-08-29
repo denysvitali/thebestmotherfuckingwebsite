@@ -30,7 +30,7 @@ gulp.task('less', () => {
 });
 
 gulp.task('copy', () => {
-    gulp.src('src/dist/**/*')
+    return gulp.src('src/dist/**/*')
         .pipe(gulp.dest('dist/'));
 });
 
@@ -41,12 +41,16 @@ gulp.task('css', () => {
         .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('clean', () => {
-    del('dist');
+gulp.task('clean', (cb) => {
+    return del.sync('dist',cb);
 });
 
 gulp.task('watch', () => {
     return gulp.watch('src/**/*', ['views', 'less', 'copy']);
 });
 
-gulp.task('default', ['clean', 'views', 'css', 'copy']);
+gulp.task('build', ['views', 'css', 'copy']);
+
+gulp.task('cleanandbuild', ['clean', 'build']);
+
+gulp.task('default', ['cleanandbuild']);
