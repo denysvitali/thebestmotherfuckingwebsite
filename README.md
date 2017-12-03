@@ -18,4 +18,4 @@ The website is not available at `thebestmotherfuckingwebsite/dist/` (where `theb
 Enjoy!
 
 ## Want something to be changed?
-[Open an issue](https://github.com/denysvitali/thebestmotherfuckingwebsite/issues) and let's discuss about it. If you want to implement it yourself do it freely and make a PR.
+[Open an issue](https://github.com/denysvitali/thebestmotherfuckingwebsite/issues) and let's discuss it. If you want to implement it yourself do it freely and make a PR.
