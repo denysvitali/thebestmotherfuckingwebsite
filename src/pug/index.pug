@@ -122,8 +122,14 @@ html
         #[a(href="https://github.com/glodime") @glodime] for his suggestion about #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/issues/12") text justification on mobile]
       li.
         #[a(href="https://github.com/arthurtiteica") @arthurtiteica] and #[a(href="https://github.com/vktec") @vktec] for their suggestions about #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/issues/9") PIN Code] / #[a(href="https://en.wikipedia.org/wiki/RAS_syndrome") RAS Syndrome] fix.
-      li.
-        #[a(href="https://github.com/ehea617") @ehea617] for his #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/pull/14") one byte addition]
+      li
+        -var spellcheckers = ["Zsavajji", "CapacitorSet", "danielquinn", "ehea617", "MrSaad", "tqdv"];
+        each username in spellcheckers
+          -var url = `https://github.com/${username}`
+          - if(spellcheckers.indexOf(username) != 0)
+            span.separator , 
+          span #[a(href=url) @#{username}]
+        span  for #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/pulls?q=is%3Apr+is%3Aclosed+label%3A%22spell+checking%22") their help in spell checking]
   div#contrast Add more contrast
   div#invmode Inverted mode
   script(src="js/main.fucking.js")
