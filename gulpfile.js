@@ -1,10 +1,11 @@
 'use strict';
-var gulp = require('gulp');
-var pug = require('gulp-pug');
-var less = require('gulp-less');
-var cssnano = require('gulp-cssnano');
-var htmlMinifier = require('gulp-html-minifier');
-var del = require('del');
+const gulp = require('gulp');
+const pug = require('gulp-pug');
+const less = require('gulp-less');
+const cssnano = require('gulp-cssnano');
+const htmlMinifier = require('gulp-html-minifier');
+const imagemin = require('gulp-imagemin');
+const del = require('del');
 
 gulp.task('views', () => {
     return gulp.src('src/pug/*.pug')
@@ -22,6 +23,12 @@ gulp.task('html', () => {
         }))
         .pipe(gulp.dest('dist/'));
 });
+
+gulp.task('images', () =>
+	gulp.src('src/img/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/img/'))
+);
 
 gulp.task('less', () => {
     return gulp.src('src/less/*.less')
@@ -49,7 +56,7 @@ gulp.task('watch', () => {
     return gulp.watch('src/**/*', ['views', 'less', 'copy']);
 });
 
-gulp.task('build', ['views', 'css', 'copy']);
+gulp.task('build', ['views', 'css', 'images', 'copy']);
 
 gulp.task('cleanandbuild', ['clean', 'build']);
 
