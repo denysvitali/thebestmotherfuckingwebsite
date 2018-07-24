@@ -1,45 +1,42 @@
-'use strict';
+"use strict";
 // I wish I could have used ES6 extravaganza, but not everyone supports it :(
-var r = document.getElementById('rbw');
-var currentHue = 0;
-var hueAddition = 5;
-function doThatFuckingColorThing()
-{
-  var color = 'hsl(' + currentHue + ',80%, 60%)';
-  if(currentHue + hueAddition > 360)
-  {
-    currentHue = 0;
-  }
-  else {
-    currentHue += hueAddition;
-  }
+var r = document.getElementById("rbw"),
+    currentHue = 0,
+    hueAddition = 5,
+    documentElement = document.getElementsByTagName("html")[0],
+    clickEvent = "ontouchstart" in window ? "touchend" : "click",
+    classMethods = ["remove", "add"],
+    rainbowTiming = 1000 / 25;
+
+function doThatFuckingColorThing() {
+  var color = "hsl(" + currentHue + ", 80%, 60%)",
+      nextHue = currentHue + hueAddition;
+  currentHue = nextHue > 360 ? 0 : nextHue;
   r.style.color = color;
-  setTimeout(function(){doThatFuckingColorThing();}, 1000/25);
+  setTimeout(doThatFuckingColorThing, rainbowTiming);
 }
 
-function someControl(id, textArr, className){
-  // You see? No fucking jQuery needed, check http://jsperf.com/getelementbyid-vs-jquery-id/44
-  var acbox = document.getElementById(id);
-  var clickEvent = ('ontouchstart' in window ? 'touchend' : 'click');
-  var el = document.getElementsByTagName('html')[0];
-  acbox.addEventListener(clickEvent, function(){
-    if(acbox.innerHTML === textArr[0]){
-      el.classList.add(className);
-      acbox.innerHTML = textArr[1];
-    }
-    else{
-      el.classList.remove(className);
-      acbox.innerHTML = textArr[0];
-    }
-  });
+function someControl(id, textArr, className) {
+  /* You see? No fucking jQuery needed, check:
+   * http://www.vanilla-js.com/
+   * http://jsperf.com/getelementbyid-vs-jquery-id/44
+   */
+  var acbox = document.getElementById(id),
+      textNode = acbox.firstChild,
+      toggled = false;
+  acbox.addEventListener(clickEvent, function() {
+    var selector = Number(toggled = !toggled);
+    textNode.data = textArr[selector];
+    el.classList[classMethods[selector]](className);
+  }, false);
 }
 
-function addContrastControl(){
-  someControl('contrast', ['Add more contrast', 'Remove additional contrast'], 'contrast');
+function addContrastControl() {
+  someControl("contrast", ["Add more contrast", "Remove additional contrast"], "contrast");
 }
 
-function addInvertedControl(){
-  someControl('invmode', ['Inverted mode', 'Normal mode'], 'inverted');
+function addInvertedControl() {
+  someControl("invmode", ["Inverted mode", "Normal mode"], "inverted");
 }
 
 doThatFuckingColorThing();
