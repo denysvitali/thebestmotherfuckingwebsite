@@ -53,11 +53,9 @@ gulp.task('clean', (cb) => {
 });
 
 gulp.task('watch', () => {
-    return gulp.watch('src/**/*', ['views', 'less', 'copy']);
+    return gulp.watch('src/**/*', ['views', 'css', 'images', 'copy']);
 });
 
 gulp.task('build', ['views', 'css', 'images', 'copy']);
-
 gulp.task('cleanandbuild', ['clean', 'build']);
-
 gulp.task('default', ['cleanandbuild']);
