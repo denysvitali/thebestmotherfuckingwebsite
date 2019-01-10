@@ -72,6 +72,52 @@ html.inverted{
     background-color: #000;
   }
 
+  div#contrast {
+    color: #FFF;
+    background-color: #000;
+  }
+
+  blockquote{
+    color: lighten(#FFF - @blockQuoteColor, @lightenBy);
+    &::before{
+      color: lighten(#FFF - @openQuoteColor, @lightenBy);
+    }
+  }
+
+  a{
+    color: @linkColor;
+    &:visited{
+      color: @linkVisitedInvertedColor;
+    }
+  }
+
+  span.wr{
+    color: @wrongColor;
+  }
+
+  span.mfw{
+    color: lighten(@motherfuckingColor, @lightenBy*.3);
+  }
+}
+
+html.inverted.contrast {
+  background-color: #fff - @bodybgColor;
+  
+  @lightenBy: 30%;
+  body{
+    color: lighten( #FFF - @bodyTextColor, @lightenBy);
+  }
+
+  div#invmode{
+    color: #FFF;
+    background-color: #000;
+  }
+
+  div#contrast {
+    color: #FFF;
+    background-color: #000;
+  }
+
   blockquote{
     color: lighten(#FFF - @blockQuoteColor, @lightenBy);
     &::before{
