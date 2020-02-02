@@ -6,7 +6,20 @@ var r = document.getElementById("rbw"),
   documentElement = document.getElementsByTagName("html")[0],
   clickEvent = "ontouchstart" in window ? "touchend" : "click",
   classMethods = ["remove", "add"],
-  rainbowTiming = 1000 / 25;
+  rainbowTiming = 1000 / 25,
+  stringArray = ["Add more contrast", "Remove additional contrast", "Inverted mode", "Normal mode"];
+
+function createControls() {
+  var contrastDiv = document.createElement('div');
+    contrastDiv.id = "contrast";
+    contrastDiv.innerText = stringArray[0];
+
+  var nightmodeDiv = document.createElement('div');
+    nightmodeDiv.id = "invmode";
+    nightmodeDiv.innerText = stringArray[2];
+  document.body.appendChild(contrastDiv);
+  document.body.appendChild(nightmodeDiv);
+}
 
 function doThatFuckingColorThing() {
   var color = "hsl(" + currentHue + ", 80%, 60%)",
@@ -39,15 +52,16 @@ function someControl(id, textArr, className) {
 function addContrastControl() {
   someControl(
     "contrast",
-    ["Add more contrast", "Remove additional contrast"],
+    [stringArray[0], stringArray[1]],
     "contrast"
   );
 }
 
 function addInvertedControl() {
-  someControl("invmode", ["Inverted mode", "Normal mode"], "inverted");
+  someControl("invmode", [stringArray[2], stringArray[3]], "inverted");
 }
 
+createControls();
 doThatFuckingColorThing();
 addContrastControl();
 addInvertedControl();
