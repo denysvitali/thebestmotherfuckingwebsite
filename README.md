@@ -5,17 +5,19 @@ Based on [motherfuckingwebsite](http://motherfuckingwebsite.com/) and [bettermot
 ## Clone the repo
 `git clone https://github.com/denysvitali/thebestmotherfuckingwebsite`
 
-## Deployment instruction
+## Deployment instructions
 See `partial-nginx.conf` for the configuration file  
 ## Build instructions
-You need npm (Node Package Manager) and `gulp`  
-To install gulp, using npm, do the following: `npm install -g gulp`.  
+In order to build this project, you'll need [Yarn](https://yarnpkg.com/).
 
-To install the project dependencies `npm install`, to build the project do `gulp`, a new folder named `dist` will be created, with the website's files.
+```
+yarn install
+yarn run start:dev
+```
 
-The website is now available at `thebestmotherfuckingwebsite/dist/` (where `thebestmotherfuckingwebsite` is the folder created when you `git clone`d the project).  
+Visit http://localhost:8080 and you'll be able to improve / view the website :)
 
-Enjoy!
+To deploy it, use `yarn run build` and deploy the contents of the `dist/` directory.
 
 ## Want something to be changed?
 [Open an issue](https://github.com/denysvitali/thebestmotherfuckingwebsite/issues) and let's discuss it. If you want to implement it yourself do it freely and make a PR.
