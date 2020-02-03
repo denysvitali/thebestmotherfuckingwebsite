@@ -26,20 +26,31 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /.(js)?$/,
+        loader: 'script-loader',
+        include: [],
+        exclude: [/node_modules/]
+      },
+      {
         test: /.(ts|tsx)?$/,
         loader: 'ts-loader',
         include: [],
         exclude: [/node_modules/]
       },
       {
-        test: /.(less|css)$/,
+        test: /.(less)$/,
         use: [{
-          loader: MiniCssExtractPlugin.loader
+          loader: 'file-loader',
+          options: {
+            name: 'main.css',
+            esModule: false,
+          }
         },
+        'extract-loader',
         {
           loader: "css-loader",
           options: {
-            sourceMap: true
+            sourceMap: false
           }
         },
         {
@@ -57,10 +68,14 @@ module.exports = {
             options: {
               name: 'index.html'
             }
-            
           },
           'extract-loader',
-          'html-loader',
+          {
+            loader: "html-loader",
+            options: {
+              attrs: ["img:src", "link:href"]
+            }
+          },
           'pug-html-loader'
         ]
       },

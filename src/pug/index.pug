@@ -6,7 +6,7 @@ html(lang="en")
   title The Best Motherfucking Website
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
   meta(name="description", content="The Best Motherfucking Website")
-  link(rel="stylesheet" type="text/css" href="css/main.css")
+  link(rel="stylesheet" type="text/css" href="../less/main.less")
   link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans")
  body
   h1 This is the #[i best] motherfucking website.
@@ -133,5 +133,5 @@ html(lang="en")
             span.separator , 
           span #[a(href=url) @#{username}]
         span  for #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/pulls?q=is%3Apr+is%3Aclosed+label%3A%22spell+checking%22") their help in spell checking]
-  include scriptloading.html
+  script(src="main.js" type="text/javascript")
   include tracking.html

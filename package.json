@@ -1,11 +1,11 @@
 {
   "name": "thebestmotherfuckingwebsite",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "The title says it all.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp",
-    "build": "webpack"
+    "build": "webpack --config webpack.config.prod.js",
+    "start:dev": "webpack-dev-server"
   },
   "author": "Denys Vitali",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "typescript": "^3.7.5",
     "webpack": "^5.0.0-beta.13",
     "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.2",
     "webpack-merge": "^4.2.2",
     "workbox-webpack-plugin": "^5.0.0"
   }
