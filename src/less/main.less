@@ -310,7 +310,7 @@ span.wr{
 div#contrast{
   color: #000;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 10px;
   font-size: 0.8em;
@@ -323,13 +323,24 @@ div#invmode{
   color: #FFF;
   background-color: #000;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 34px;
   padding: 2px 5px 2px 5px;
   font-size: 0.8em;
   text-decoration: underline;
   .noselect
+}
+
+@media screen and (max-width:1080px) {
+  
+  div#contrast {
+    position: absolute;
+  }
+  
+  div#invmode {
+    position: absolute;
+  }
 }
 
 span.sb{
