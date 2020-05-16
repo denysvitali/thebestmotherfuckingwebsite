@@ -38,6 +38,23 @@ module.exports = {
         exclude: [/node_modules/]
       },
       {
+        test: /.(css)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+          }
+        },
+        'extract-loader',
+        {
+          loader: "css-loader",
+          options: {
+            sourceMap: false
+          }
+        }
+        ]
+      },
+      {
         test: /.(less)$/,
         use: [{
           loader: 'file-loader',
@@ -80,7 +97,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(svg|jpg)/,
+        test: /\.(svg|jpg|woff(2)?|ttf|eot)/,
         use: [{
           loader: 'file-loader',
           options: {
