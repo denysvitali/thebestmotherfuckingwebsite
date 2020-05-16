@@ -1,11 +1,14 @@
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build . -t dvitali/tbmfw:latest
-
+- docker build . -t dvitali/tbmfw:latest
 script:
-  - GIT_TAG=$(git describe --exact-match --tags 2> /dev/null || git rev-parse --short HEAD)
-  - docker build . -t dvitali/tbmfw:${GIT_TAG}
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push dvitali/tbmfw:${GIT_TAG}
+- GIT_TAG=$(git describe --exact-match --tags 2> /dev/null || git rev-parse --short
+  HEAD)
+- docker build . -t dvitali/tbmfw:${GIT_TAG}
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push dvitali/tbmfw:${GIT_TAG}
+env:
+  global:
+  - secure: T67zf5P22T6ekfrWOBg4+5M3wyP3HNR9APPc/y7Y1biDNxcrBgFuEpaUf2MAGi50D1L5cqVH4FUip4zYCGktGvxf39JuE19B/u+7ftvJIi5ML56y0FHCTcXSnzlyb+gutJfeN/nngurABEAQ6JZf5ItylLydto+oEzFgZFOqtaeF4nYsvsUlAEU9CkMoXadMX2C9UkOy3xcQ7KoF62asX+oeATqmjmLM+DhfVbDxJ/JwUfhJZ1r4BILq1OENgqvv3jFfpQX1CBH0u3Y18IPlDaAjxeU4d+18y9/5UMsxl+uZj7P11hNHPFLl/q14zZFGWzUQeXip3sd8XOacryZ6aAwDLPYg+kz/x1PgHZbPWVdPpdbWCDJwNba96f0NjBxjArdnZhk1k60kAVsQwFsvpcLja8ZKmRWv+dSHN0oRwV6ANHkQXWOZGzOn2se4qs+HS5RtTo8JnREpdiAEH5zeZhkz6b9OW73ZO7GTvsuXNZIXVxtySm3N4oMTyS+C74rdoGZX/4cR5+NbDIcIdASWXmkOkxPYrjudfJAFwLSccAgVkogiOD5cx3yhn1xIgtwsb3eUKMWKVHih+KA97SA7+brBBtRB+3P/jCFoUjg5+3o25/dyOhAfHi4UlpWqIdpPGQCUp2dh1PyTFeNwnYkISm04C3t8HHP2VUFAcs/YPvg=
+  - secure: V0X795PECxguF27LNFSR6cANug7Cr3HCU1JEdeeSdKrNvkEBQAO7cTg9JKDXXplf6Wpd+hlXzfrYXlfekB5Rt908DDPh/hTFwYO2mDMQgfJ+IkC5I9plnBbldr5XW7q3Fyg1Yk1gAHnxjuN0OloBpUGvSrmkos254l7F4SzATAnlgpArvlrlhG1M/CPK/LP4XT+FyHDhW4XR4Y4CPkp92Jzt82TBGFyMdWFfCdJ3icvLFnosKRUMtIh4B+nCfDDZJBP562M9c3XbUiIsL1YX2Az3OC01Q9/8J3ZtDAmHICI8Cw9Y1yGHCJdANxDW1dv5qd4YqCtqZKxHZnH7lEaNO9oipi5Y/lK3gkIov3Pn7VDSTtXzsaeBcYTQ04nIZSaf7WfBcawZ9upAGxf95GWOROJWuOqvQKDMfFAWfGBnxRebNlSIz3+NW32gqw196eQwsV/N1CtQoefIfcdiHrHt55pNg9QD/7B8nakcc7dmkJYKLgOoqa+DuS15ONzpGQTT4J0KckqZSBg4TQOpwIqPm9OzhOxudiZnyREKlfscY0exUrc5HyAdFJXGN0QidOhgIUbqAvP0PEAUmSHu7M79zFXyN9kDWxr66czszPvCxZ3QifUsoTnkWOUsgz3HuWDxaYrQdVuhelQQ08FwXlAidP2gqBwKk2SBMi/397ldn94=
