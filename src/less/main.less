@@ -14,21 +14,13 @@
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
 
-html{
-  background-color: @bodybgColor;
-}
-body{
-  font-family: "Open Sans", Arial;
-  color: @bodyTextColor;
-  font-size: 16px;
-  margin: 2em auto;
-  max-width: 800px;
-  padding: 1em;
-  line-height: 1.4;
-  text-align: justify;
+.light(){
+  html{
+    background-color: @bodybgColor;
+  }
 }
 
-html.contrast{
+.contrast() {
   /* Accessibility first */
   @darkenBy: 25%;
   body{
@@ -58,52 +50,24 @@ html.contrast{
   }
 }
 
-html.inverted{
-  /* Don't let the motherfucking sun disturb you */
-  background-color: #fff - @bodybgColor;
-
-  @lightenBy: 15%;
-  body{
-    color: #FFF - @bodyTextColor;
-  }
-
-  div#invmode{
-    color: #FFF;
-    background-color: #000;
-  }
-
-  div#contrast {
-    color: #FFF;
-    background-color: #000;
-  }
-
-  blockquote{
-    color: lighten(#FFF - @blockQuoteColor, @lightenBy);
-    &::before{
-      color: lighten(#FFF - @openQuoteColor, @lightenBy);
-    }
-  }
-
-  a{
-    color: @linkColor;
-    &:visited{
-      color: @linkVisitedInvertedColor;
-    }
-  }
-
-  span.wr{
-    color: @wrongColor;
-  }
-
-  span.mfw{
-    color: lighten(@motherfuckingColor, @lightenBy*.3);
-  }
+body{
+  font-family: "Open Sans", Arial;
+  color: @bodyTextColor;
+  font-size: 16px;
+  margin: 2em auto;
+  max-width: 800px;
+  padding: 1em;
+  line-height: 1.4;
+  text-align: justify;
 }
 
-html.inverted.contrast {
-  background-color: #fff - @bodybgColor;
-  
-  @lightenBy: 30%;
+html.contrast{
+  .contrast();
+}
+
+.make_it_dark(@lightenBy){
+  background-color: #000;
+
   body{
     color: lighten( #FFF - @bodyTextColor, @lightenBy);
   }
@@ -126,20 +90,54 @@ html.inverted.contrast {
   }
 
   a{
-    color: @linkColor;
+    color: lighten(@linkColor, @lightenBy);
     &:visited{
-      color: @linkVisitedInvertedColor;
+      color: lighten(@linkVisitedColor, @lightenBy);
     }
   }
 
   span.wr{
-    color: @wrongColor;
+    color: lighten(@wrongColor, @lightenBy*.5);
   }
 
   span.mfw{
-    color: lighten(@motherfuckingColor, @lightenBy*.3);
+    color: lighten(@motherfuckingColor, @lightenBy);
   }
 }
+
+.dark(){
+  /* Don't let the motherfucking sun disturb you */
+  .make_it_dark(12%)
+}
+
+.dark_contrast(){
+  .make_it_dark(30%)
+}
+
+@media screen and (prefers-color-scheme: light){
+  html.inverted{
+    .dark()
+  }
+
+  html.inverted.contrast {
+    .dark_contrast();
+  }
+}
+
+@media (prefers-color-scheme: dark){
+  html:not(.inverted){
+    .dark();
+  }
+
+  html:not(.inverted).contrast{
+    .dark_contrast();
+  }
+
+  html.inverted {
+    .light();
+  }
+}
+
 
 a{
   color: @linkColor;
