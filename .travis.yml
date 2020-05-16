@@ -1,0 +1,11 @@
+services:
+  - docker
+
+before_install:
+  - docker build . -t dvitali/tbmfw:latest
+
+script:
+  - GIT_TAG=$(git describe --exact-match --tags 2> /dev/null || git rev-parse --short HEAD)
+  - docker build . -t dvitali/tbmfw:${GIT_TAG}
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push dvitali/tbmfw:${GIT_TAG}
