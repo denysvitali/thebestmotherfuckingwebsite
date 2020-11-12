@@ -1,5 +1,5 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -15,7 +15,11 @@ module.exports = {
 
   plugins: [
     new OptimizeCssAssetsPlugin(),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      output: {
+        path: path.resolve(process.cwd(), 'dist'),
+      }
+    }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.css' }),
     new CopyPlugin([
@@ -43,6 +47,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             esModule: false,
+            publicPath: '/',
           }
         },
         'extract-loader',
@@ -61,6 +66,7 @@ module.exports = {
           options: {
             name: 'main.css',
             esModule: false,
+            publicPath: '/',
           }
         },
         'extract-loader',
@@ -83,7 +89,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'index.html'
+              name: 'index.html',
+              publicPath: '/'
             }
           },
           'extract-loader',
@@ -103,6 +110,7 @@ module.exports = {
           options: {
             name: 'static/[hash].[ext]',
             esModule: false,
+            publicPath: '/'
           }
         }]
       }
@@ -115,8 +123,5 @@ module.exports = {
 
   optimization: {
     minimizer: [new TerserPlugin()],
-  },
-  experiments: {
-    asset: true,
   }
 }
