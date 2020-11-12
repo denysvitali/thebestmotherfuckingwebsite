@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -14,6 +15,10 @@ module.exports = {
   entry: './src/index.ts',
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/pug/index.pug",
+      filename: 'index.html',
+    }),
     new OptimizeCssAssetsPlugin(),
     new CleanWebpackPlugin({
       output: {
@@ -31,7 +36,7 @@ module.exports = {
     rules: [
       {
         test: /.(js)?$/,
-        loader: 'script-loader',
+        loader: 'file-loader',
         include: [],
         exclude: [/node_modules/]
       },
@@ -86,21 +91,7 @@ module.exports = {
       {
         test: /.pug$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'index.html',
-              publicPath: '/'
-            }
-          },
-          'extract-loader',
-          {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src", "link:href"]
-            }
-          },
-          'pug-html-loader'
+          'pug-loader'
         ]
       },
       {

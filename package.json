@@ -36,6 +36,8 @@
     "workbox-webpack-plugin": "^5.0.0"
   },
   "dependencies": {
+    "apply-loader": "^2.0.0",
+    "html-webpack-plugin": "^4.5.0",
     "typeface-open-sans": "^0.0.75"
   }
 }

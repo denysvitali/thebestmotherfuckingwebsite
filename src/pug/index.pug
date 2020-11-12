@@ -6,8 +6,8 @@ html(lang="en")
   title The Best Motherfucking Website
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
   meta(name="description", content="The Best Motherfucking Website")
-  link(rel="stylesheet" type="text/css" href="../less/main.less")
-  link(rel="stylesheet" type="text/css" href="~typeface-open-sans")
+  link(rel="stylesheet" type="text/css" href=require('../less/main.less'))
+  link(rel="stylesheet" type="text/css" href=require('../../node_modules/typeface-open-sans'))
 
   // Icons
   link(rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png')
@@ -114,7 +114,7 @@ html(lang="en")
     Don't worry, it can be read in less than 30 seconds, unless you have some sort of reading disability - in that case, I'm wondering why you're still reading this text. Really. Stop. Please. I mean, seriously. Why are you still reading?
     
   a(href="http://www.kopimi.com/kopimi" title="Kopimi" class="kopimi")
-    img(src="../img/kopimi.svg" class="kopimi" title="Kopimi Logo")
+    img(src=require("../img/kopimi.svg") class="kopimi" title="Kopimi Logo")
     
   h2 Contributions
   p.
@@ -141,5 +141,5 @@ html(lang="en")
             span.separator , 
           span #[a(href=url) @#{username}]
         span  for #[a(href="https://github.com/denysvitali/thebestmotherfuckingwebsite/pulls?q=is%3Apr+is%3Aclosed+label%3A%22spell+checking%22") their help in spell checking]
-  script(src="main.js" type="text/javascript")
+  script(src=require('../js/main.fucking.js') type="text/javascript")
   include tracking.html
