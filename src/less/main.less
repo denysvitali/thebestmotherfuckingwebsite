@@ -35,7 +35,7 @@
   }
 
   a{
-    color: #0051c9;
+    color: #03F;
     &:visited{
         color: #7d013e;
     }
@@ -72,12 +72,12 @@ html.contrast{
     color: lighten( #FFF - @bodyTextColor, @lightenBy);
   }
 
-  div#invmode{
+  #invmode{
     color: #FFF;
     background-color: #000;
   }
 
-  div#contrast {
+  #contrast {
     color: #FFF;
     background-color: #000;
   }
@@ -309,38 +309,40 @@ span.wr{
   text-decoration: underline;
 }
 
-div#contrast{
-  color: #000;
+button.cont-inv {
   cursor: pointer;
+  border-radius: 2px;
   position: fixed;
   right: 10px;
-  top: 10px;
   font-size: 0.8em;
   text-decoration: underline;
+  border: 0px;
+  padding: 2px 5px 2px 5px;
+}
+
+#contrast{
+  color: #000;
+  top: 10px;
   .noselect
 }
 
 
-div#invmode{
+#invmode{
   color: #FFF;
   background-color: #000;
-  cursor: pointer;
   position: fixed;
-  right: 10px;
-  top: 34px;
-  padding: 2px 5px 2px 5px;
-  font-size: 0.8em;
+  top: 34px;  
   text-decoration: underline;
   .noselect
 }
 
 @media screen and (max-width:1080px) {
   
-  div#contrast {
+  #contrast {
     position: absolute;
   }
   
-  div#invmode {
+  #invmode {
     position: absolute;
   }
 }

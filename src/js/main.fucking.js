@@ -10,15 +10,19 @@ var r = document.getElementById("rbw"),
   stringArray = ["Add more contrast", "Remove additional contrast", "Inverted mode", "Normal mode"];
 
 function createControls() {
-  var contrastDiv = document.createElement('div');
-    contrastDiv.id = "contrast";
-    contrastDiv.innerText = stringArray[0];
+  var contrastButton = document.createElement('button');
+    contrastButton.id = "contrast";
+    contrastButton.classList.add('cont-inv');
+    contrastButton.innerText = stringArray[0];
+    contrastButton.tabIndex = 1;
 
-  var nightmodeDiv = document.createElement('div');
-    nightmodeDiv.id = "invmode";
-    nightmodeDiv.innerText = stringArray[2];
-  document.body.appendChild(contrastDiv);
-  document.body.appendChild(nightmodeDiv);
+  var nightModeButton = document.createElement('button');
+    nightModeButton.id = "invmode";
+    nightModeButton.classList.add('cont-inv');
+    nightModeButton.innerText = stringArray[2];
+    nightModeButton.tabIndex = 2;
+  document.body.appendChild(contrastButton);
+  document.body.appendChild(nightModeButton);
 }
 
 function doThatFuckingColorThing() {
