@@ -1,71 +1,49 @@
 "use strict";
-// I wish I could have used ES6 extravaganza, but not everyone supports it :(
-var r = document.getElementById("rbw"),
-  currentHue = 0,
-  hueAddition = 5,
-  documentElement = document.getElementsByTagName("html")[0],
-  clickEvent = "ontouchstart" in window ? "touchend" : "click",
-  classMethods = ["remove", "add"],
-  rainbowTiming = 1000 / 25,
-  stringArray = ["Add more contrast", "Remove additional contrast", "Inverted mode", "Normal mode"];
 
-function createControls() {
-  var contrastButton = document.createElement('button');
-    contrastButton.id = "contrast";
-    contrastButton.classList.add('cont-inv');
-    contrastButton.innerText = stringArray[0];
-    contrastButton.tabIndex = 1;
+(() => {
+  // 1. Rainbow thing (using requestAnimationFrame for 2025 performance)
+  const rbw = document.getElementById("rbw");
+  if (rbw) {
+    let hue = 0;
+    const animate = () => {
+      rbw.style.color = `hsl(${hue}, 80%, 60%)`;
+      hue = (hue + 5) % 360;
+      requestAnimationFrame(animate);
+    };
+    animate();
+  }
 
-  var nightModeButton = document.createElement('button');
-    nightModeButton.id = "invmode";
-    nightModeButton.classList.add('cont-inv');
-    nightModeButton.innerText = stringArray[2];
-    nightModeButton.tabIndex = 2;
-  document.body.appendChild(contrastButton);
-  document.body.appendChild(nightModeButton);
-}
+  const setupControl = ({ inputId, storageKey, labels }) => {
 
-function doThatFuckingColorThing() {
-  var color = "hsl(" + currentHue + ", 80%, 60%)",
-    nextHue = currentHue + hueAddition;
-  currentHue = nextHue > 360 ? 0 : nextHue;
-  r.style.color = color;
-  setTimeout(doThatFuckingColorThing, rainbowTiming);
-}
+    const input = document.getElementById(inputId);
+    const label = document.querySelector(`label[for="${inputId}"]`);
+    if (!input || !label) return;
+    const saved = localStorage.getItem(storageKey);
+    if (saved !== null) {
+      input.checked = saved === "true";
+    }
 
-function someControl(id, textArr, className) {
-  /* You see? No fucking jQuery needed, check:
-   * http://www.vanilla-js.com/
-   * http://jsperf.com/getelementbyid-vs-jquery-id/44
-   */
-  var el = document.getElementsByTagName("html")[0];
-  var acbox = document.getElementById(id),
-    textNode = acbox.firstChild,
-    toggled = false;
-  acbox.addEventListener(
-    clickEvent,
-    function() {
-      var selector = Number((toggled = !toggled));
-      textNode.data = textArr[selector];
-      el.classList[classMethods[selector]](className);
-    },
-    false
-  );
-}
+    const updateUI = () => {
+      label.textContent = labels[input.checked ? 1 : 0];
+    };
 
-function addContrastControl() {
-  someControl(
-    "contrast",
-    [stringArray[0], stringArray[1]],
-    "contrast"
-  );
-}
+    updateUI();
 
-function addInvertedControl() {
-  someControl("invmode", [stringArray[2], stringArray[3]], "inverted");
-}
+    input.addEventListener("change", () => {
+      localStorage.setItem(storageKey, input.checked);
+      updateUI();
+    });
+  };
 
-createControls();
-doThatFuckingColorThing();
-addContrastControl();
-addInvertedControl();
+  setupControl({
+    inputId: "contrast",
+    storageKey: "contrast",
+    labels: ["Add more contrast", "Remove additional contrast"]
+  });
+
+  setupControl({
+    inputId: "invmode",
+    storageKey: "inverted",
+    labels: ["Inverted mode", "Normal mode"]
+  });
+})();

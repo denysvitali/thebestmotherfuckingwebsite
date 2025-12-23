@@ -13,6 +13,7 @@
 @motherfuckingColor: #730000;
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
+@nativeBtnBgColor: #f0f0f0;
 
 .light(){
   html{
@@ -63,7 +64,7 @@ body{
   hyphens: auto;
 }
 
-html.contrast{
+html:has(#contrast:checked) {
   .contrast();
 }
 
@@ -74,12 +75,12 @@ html.contrast{
     color: lighten( #FFF - @bodyTextColor, @lightenBy);
   }
 
-  #invmode{
+  label[for="invmode"]{
     color: #FFF;
     background-color: #000;
   }
 
-  #contrast {
+  label[for="contrast"] {
     color: #FFF;
     background-color: #000;
   }
@@ -117,25 +118,25 @@ html.contrast{
 }
 
 @media screen and (prefers-color-scheme: light){
-  html.inverted{
+  html:has(#invmode:checked){
     .dark()
   }
 
-  html.inverted.contrast {
+  html:has(#invmode:checked):has(#contrast:checked) {
     .dark_contrast();
   }
 }
 
 @media (prefers-color-scheme: dark){
-  html:not(.inverted){
+  html:not(:has(#invmode:checked)){
     .dark();
   }
 
-  html:not(.inverted).contrast{
+  html:not(:has(#invmode:checked)):has(#contrast:checked){
     .dark_contrast();
   }
 
-  html.inverted {
+  html:has(#invmode:checked) {
     .light();
   }
 }
@@ -156,6 +157,44 @@ a{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+label.cont-inv {
+  cursor: pointer;
+  border-radius: 2px;
+  position: fixed;
+  right: 10px;
+  font-size: 0.8em;
+  text-decoration: underline;
+  border: 0px;
+  padding: 2px 5px 2px 5px;
+  display: inline-block; // Nutné pro label
+}
+
+label[for="contrast"]{
+  color: #000;
+  background: @nativeBtnBgColor;
+  top: 10px;
+  .noselect
+}
+
+label[for="invmode"]{
+  color: #FFF;
+  background-color: #000;
+  position: fixed;
+  top: 34px;  
+  text-decoration: underline;
+  .noselect
+}
+
+#contrast, #invmode {
+  display: none;
+}
+
+@media screen and (max-width:1080px) {
+  label[for="contrast"], label[for="invmode"] {
+    position: absolute;
+  }
 }
 
 
