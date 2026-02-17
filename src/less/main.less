@@ -2,21 +2,21 @@
 @bodyTextColor: #454545;
 
 // Link Colors
-@linkColor: #07A;
+@linkColor: #07a;
 @linkVisitedColor: #941352;
 @linkVisitedInvertedColor: #ac5a82;
 // ===============
 
 @wrongColor: #c0392b;
-@shittyBlue: #0000EE;
-@shittyViolet: #551A8B;
+@shittyBlue: #0000ee;
+@shittyViolet: #551a8b;
 @motherfuckingColor: #730000;
 @blockQuoteColor: #456;
 @openQuoteColor: #666;
 @nativeBtnBgColor: #f0f0f0;
 
-.light(){
-  html{
+.light() {
+  html {
     background-color: @bodybgColor;
   }
 }
@@ -24,34 +24,34 @@
 .contrast() {
   /* Accessibility first */
   @darkenBy: 25%;
-  body{
+  body {
     color: darken(@bodyTextColor, @darkenBy);
   }
 
-  blockquote{
+  blockquote {
     color: darken(@blockQuoteColor, @darkenBy);
-    &::before{
+    &::before {
       color: darken(@openQuoteColor, @darkenBy);
     }
   }
 
-  a{
-    color: #03F;
-    &:visited{
-        color: #7d013e;
+  a {
+    color: #03f;
+    &:visited {
+      color: #7d013e;
     }
   }
 
-  span.wr{
+  span.wr {
     color: #800;
   }
 
-  span.mfw{
+  span.mfw {
     color: darken(@motherfuckingColor, @darkenBy*.3);
   }
 }
 
-body{
+body {
   font-family: "Open Sans", Arial;
   color: @bodyTextColor;
   font-size: 16px;
@@ -64,93 +64,91 @@ body{
   hyphens: auto;
 }
 
-html:has(#contrast:checked) {
+html.contrast {
   .contrast();
 }
 
-.make_it_dark(@lightenBy){
+.make_it_dark(@lightenBy) {
   background-color: #000;
-
-  body{
-    color: lighten( #FFF - @bodyTextColor, @lightenBy);
+  body {
+    color: lighten(#fff - @bodyTextColor, @lightenBy);
   }
 
-  label[for="invmode"]{
-    color: #FFF;
+  label[for="invmode"] {
+    color: #fff;
     background-color: #000;
   }
 
   label[for="contrast"] {
-    color: #FFF;
+    color: #fff;
     background-color: #000;
   }
 
-  blockquote{
-    color: lighten(#FFF - @blockQuoteColor, @lightenBy);
-    &::before{
-      color: lighten(#FFF - @openQuoteColor, @lightenBy);
+  blockquote {
+    color: lighten(#fff - @blockQuoteColor, @lightenBy);
+    &::before {
+      color: lighten(#fff - @openQuoteColor, @lightenBy);
     }
   }
 
-  a{
+  a {
     color: lighten(@linkColor, @lightenBy);
-    &:visited{
+    &:visited {
       color: lighten(@linkVisitedColor, @lightenBy);
     }
   }
 
-  span.wr{
+  span.wr {
     color: lighten(@wrongColor, @lightenBy*.5);
   }
 
-  span.mfw{
+  span.mfw {
     color: lighten(@motherfuckingColor, @lightenBy);
   }
 }
 
-.dark(){
+.dark() {
   /* Don't let the motherfucking sun disturb you */
-  .make_it_dark(12%)
+  .make_it_dark(12%);
 }
 
-.dark_contrast(){
-  .make_it_dark(30%)
+.dark_contrast() {
+  .make_it_dark(30%);
 }
 
-@media screen and (prefers-color-scheme: light){
-  html:has(#invmode:checked){
-    .dark()
-  }
-
-  html:has(#invmode:checked):has(#contrast:checked) {
-    .dark_contrast();
-  }
-}
-
-@media (prefers-color-scheme: dark){
-  html:not(:has(#invmode:checked)){
+@media screen and (prefers-color-scheme: light) {
+  html.inverted {
     .dark();
   }
 
-  html:not(:has(#invmode:checked)):has(#contrast:checked){
+  html.inverted.contrast {
+    .dark_contrast();
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.inverted) {
+    .dark();
+  }
+
+  html:not(.inverted).contrast {
     .dark_contrast();
   }
 
-  html:has(#invmode:checked) {
+  html.inverted {
     .light();
   }
 }
 
-
-a{
+a {
   color: @linkColor;
 
-  &:visited{
+  &:visited {
     color: @linkVisitedColor;
   }
 }
 
-.noselect{
+.noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -168,119 +166,118 @@ label.cont-inv {
   text-decoration: underline;
   border: 0px;
   padding: 2px 5px 2px 5px;
-  display: inline-block; // Nutné pro label
+  display: inline-block;
+  // Nutné pro label
 }
 
-label[for="contrast"]{
+label[for="contrast"] {
   color: #000;
   background: @nativeBtnBgColor;
   top: 10px;
-  .noselect
+  .noselect;
 }
 
-label[for="invmode"]{
-  color: #FFF;
+label[for="invmode"] {
+  color: #fff;
   background-color: #000;
   position: fixed;
-  top: 34px;  
+  top: 34px;
   text-decoration: underline;
-  .noselect
+  .noselect;
 }
 
-#contrast, #invmode {
+#contrast,
+#invmode {
   display: none;
 }
 
-@media screen and (max-width:1080px) {
-  label[for="contrast"], label[for="invmode"] {
+@media screen and (max-width: 1080px) {
+  label[for="contrast"],
+  label[for="invmode"] {
     position: absolute;
   }
 }
 
-
-span.citneed{
+span.citneed {
   vertical-align: top;
   font-size: 0.7em;
   padding-left: 0.3em;
 }
 
-small{
+small {
   font-size: 0.4em;
 }
 
-p.st{
+p.st {
   margin-top: -1em;
 }
 
-div.fancyPositioning{
-
-  div.picture-left{
+div.fancyPositioning {
+  div.picture-left {
     float: left;
     width: 40%;
     overflow: hidden;
     margin-right: 1em;
 
-    img{
+    img {
       width: 100%;
     }
 
     figure {
       margin: 10px;
-
       figcaption {
         font-size: 0.7em;
       }
     }
   }
 
-  div.tleft{
+  div.tleft {
     float: left;
     width: 55%;
-    p:first-child{
+    p:first-child {
       margin-top: 0;
     }
   }
-  &::after{
+  &::after {
     display: block;
     content: "";
     clear: both;
   }
 }
 
-ul{
-  li{
-    img{
+ul {
+  li {
+    img {
       height: 1em;
     }
   }
 }
 
-blockquote{
+blockquote {
   color: @blockQuoteColor;
   margin-left: 0;
   margin-top: 2em;
   margin-bottom: 2em;
 
-  span{
+  span {
     float: left;
     margin-left: 1rem;
     padding-top: 1rem;
   }
 
-  author{
+  author {
     display: block;
     clear: both;
     font-size: 0.6em;
     margin-left: 2.4rem;
     font-style: oblique;
-
-    &:before{
+    &:before {
       content: "- ";
       margin-right: 1em;
     }
   }
 
-  &::before{
+  &::before {
     font-family: "Times New Roman", Times, Arial;
     color: @openQuoteColor;
     content: open-quote;
@@ -292,7 +289,7 @@ blockquote{
     width: 1.2rem;
   }
 
-  &::after{
+  &::after {
     content: "";
     display: block;
     clear: both;
@@ -300,32 +297,31 @@ blockquote{
 }
 
 @media screen and (max-width: 500px) {
-
-  body{
+  body {
     text-align: left;
   }
 
-  div.fancyPositioning{
-    div.picture-left{
+  div.fancyPositioning {
+    div.picture-left {
       float: none;
       width: inherit;
     }
 
-    div.tleft{
+    div.tleft {
       float: none;
       width: inherit;
     }
   }
 
-  blockquote{
-    span{
+  blockquote {
+    span {
       width: 80%;
     }
-    author{
+    author {
       padding-top: 1em;
       width: 80%;
       margin-left: 15%;
-      &::before{
+      &::before {
         content: "";
         margin-right: inherit;
       }
@@ -333,18 +329,17 @@ blockquote{
   }
 }
 
-
 // ===== TBMFW specific styles ======
 
-span.visited{
+span.visited {
   color: @linkVisitedColor;
 }
 
-span.visited-maroon{
-  color:  #85144b;
+span.visited-maroon {
+  color: #85144b;
 }
 
-span.wr{
+span.wr {
   color: @wrongColor;
   font-weight: 600;
   text-decoration: underline;
@@ -361,45 +356,43 @@ button.cont-inv {
   padding: 2px 5px 2px 5px;
 }
 
-#contrast{
+#contrast {
   color: #000;
   top: 10px;
-  .noselect
+  .noselect;
 }
 
-
-#invmode{
-  color: #FFF;
+#invmode {
+  color: #fff;
   background-color: #000;
   position: fixed;
-  top: 34px;  
+  top: 34px;
   text-decoration: underline;
-  .noselect
+  .noselect;
 }
 
-@media screen and (max-width:1080px) {
-  
+@media screen and (max-width: 1080px) {
   #contrast {
     position: absolute;
   }
-  
+
   #invmode {
     position: absolute;
   }
 }
 
-span.sb{
+span.sb {
   cursor: not-allowed;
   color: @shittyBlue;
 }
 
-span.sv{
+span.sv {
   cursor: not-allowed;
   color: @shittyViolet;
 }
 
-span.foufoufou{
-  &::before{
+span.foufoufou {
+  &::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -413,7 +406,7 @@ span.foufoufou{
 }
 
 span.foufivfoufivfoufiv {
-  &::before{
+  &::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -426,16 +419,15 @@ span.foufivfoufivfoufiv {
   font-weight: bold;
 }
 
-span.mfw{
+span.mfw {
   color: @motherfuckingColor;
 }
 
-a.kopimi{
+a.kopimi {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  
-  img.kopimi{
+  img.kopimi {
     display: block;
     height: 2em;
     margin-left: auto;
@@ -443,7 +435,7 @@ a.kopimi{
   }
 }
 
-p.fakepre{
+p.fakepre {
   font-family: monospace;
   font-size: 0.9em;
 }
