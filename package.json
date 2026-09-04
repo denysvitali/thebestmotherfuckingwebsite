@@ -15,7 +15,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "extract-loader": "^4.0.3",
-    "file-loader": "^5.0.2",
+    "file-loader": "^6.0.0",
     "html-loader": "^0.5.5",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
